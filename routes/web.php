@@ -22,10 +22,16 @@ Route::get("/",function(){
 Route::get('/offers',[offerController::class,"getOffer"]);
 Route::get("/redirect/{service}",[Controllers\SocialController::class,"redirect"]);
 Route::get("/callback/{service}",[Controllers\SocialController::class,"callback"]);
-Route::group(['prefix'=>"offer"],function(){
+
+Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]],function(){
+
+        Route::group(['prefix' => 'offer'],function(){
+            Route::get("create",[offerController::class,"create"]);
+        });
+
+
+   // Route::get("show",[offerController::class,"show"]);
     Route::post('store',[offerController::class,"store"])->name("offers.store");
-    Route::get("create",[offerController::class,"create"]);
-    Route::get("show",[offerController::class,"show"]);
 });
 Auth::routes(['verify'=>true]);
 

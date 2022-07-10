@@ -21,9 +21,9 @@ class offerController extends Controller
             'price'=> ['required','string','max:5'],
             'details'=>['required','string','max:150']
         ],[
-            'name.required' => "حقل الاسم مطلوب",
-            'price.required' => "حقل الاسم مطلوب",
-            'details.required' => "حddم مطلوب",
+            'name.required' => __('check.name required'),
+            'price.required' => __('check.price required'),
+            'details.required' => __('check.details required'),
         ]);
         if($validate->fails()){
             return redirect()->back()->withErrors($validate);
