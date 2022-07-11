@@ -23,13 +23,23 @@
   </nav>
     <body>
         <form action="{{route("offers.store")}}" method="POST">
+            @if(session('message'))
+            {{ session('message') }}
+            @endif
             <div class="form-group">
-              <label for="exampleInputEmail1">{{__('check.Name Offers')}}</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" name="name" aria-describedby="emailHelp" placeholder="{{__('check.Name Offers')}}">
-              @error("name")
+              <label for="exampleInputEmail1">{{__('check.Name Offers en')}}</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" name="name_en" aria-describedby="emailHelp" placeholder="{{__('check.Name Offers')}}">
+              @error("name_en")
               <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
               @enderror
             </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">{{__('check.Name Offers ar')}}</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" name="name_ar" aria-describedby="emailHelp" placeholder="{{__('check.Name Offers')}}">
+                @error("name_ar")
+                <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
+                @enderror
+              </div>
             <div class="form-group">
               <label for="exampleInputPassword1">{{__('check.price')}}</label>
               <input type="text" class="form-control" name="price" id="exampleInputPassword1" placeholder="Price of offer">
@@ -38,9 +48,17 @@
               @enderror
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">{{__('check.details')}}</label>
-                <input type="text" class="form-control" name="details" id="exampleInputPassword1" placeholder="Details of offer">
-                @error("details")
+                <label for="exampleInputPassword1">{{__('check.details en')}}</label>
+                <input type="text" class="form-control" name="details_en" id="exampleInputPassword1" placeholder="Details of offer">
+                @error("details_en")
+                <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
+                @enderror
+                @csrf
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">{{__('check.details ar')}}</label>
+                <input type="text" class="form-control" name="details_ar" id="exampleInputPassword1" placeholder="Details of offer">
+                @error("details_ar")
                 <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
                 @enderror
                 @csrf

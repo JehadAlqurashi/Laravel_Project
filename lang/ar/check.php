@@ -16,9 +16,11 @@ return [
     'name required' => 'الاسم مطلوب',
     'price required' => 'السعر مطلوب',
     'details required' => 'تفاصيل المنتج مطلوبة',
-    'Name Offers' => 'اسم المنتج',
+    'Name Offers en' => 'اسم المنتج بالانجليزي',
+    'Name Offers ar' => 'اسم المنتج بالعربي',
     'price' => 'سعر المنتج',
-    'details' => 'وصف المنتج',
+    'details en' => 'وصف المنتج بالانجليزي',
+    'details ar' => 'وصف المنتج بالعربي',
     'submit' => 'ارسال'
 
 

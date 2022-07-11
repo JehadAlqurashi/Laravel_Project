@@ -27,10 +27,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
 
         Route::group(['prefix' => 'offer'],function(){
             Route::get("create",[offerController::class,"create"]);
+            Route::get("show",[offerController::class,"show"]);
         });
 
 
-   // Route::get("show",[offerController::class,"show"]);
+
     Route::post('store',[offerController::class,"store"])->name("offers.store");
 });
 Auth::routes(['verify'=>true]);

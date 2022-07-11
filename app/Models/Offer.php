@@ -9,9 +9,11 @@ class Offer extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
+        'name_en',
+        'name_ar',
         'price',
-        'details',
+        'details_en',
+        'details_ar',
         'created_at',
 
     ];
