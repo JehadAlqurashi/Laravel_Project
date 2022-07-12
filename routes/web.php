@@ -3,6 +3,8 @@ use App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\offerController;
+use App\Http\Controllers\VideoController;
+use App\Models\Video;
 use Illuminate\Foundation\Console\DownCommand;
 use Illuminate\Support\Facades\Route;
 
@@ -31,7 +33,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
             Route::get("edit/{id}",[offerController::class,'edit'])->name('offers.edit');
             Route::post("update/{id}",[offerController::class,'update'])->name("offers.update");
         });
-
+        Route::get("video",[VideoController::class,'view'])->middleware('verified');
 
 
     Route::post('store',[offerController::class,"store"])->name("offers.store");
