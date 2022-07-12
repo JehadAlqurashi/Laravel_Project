@@ -9,9 +9,12 @@ use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use PDO;
+use App\Traits;
+use App\Traits\OfferTraits;
 
 class offerController extends Controller
 {
+    use OfferTraits;
 
     public function store(OfferRequest $request){
 
@@ -23,12 +26,17 @@ class offerController extends Controller
         // if($validate->fails()){
         //     return redirect()->back()->withErrors($validate);
         // }
+
+        $photo =$this->upload($request->photo,'/images/offers');
+
         Offer::create([
+
             'name_en' => $request->name_en,
             'name_ar' => $request->name_ar,
             'price'=> $request->price,
             'details_en' => $request->details_en,
             'details_ar' => $request->details_ar,
+            'photo' => $photo
         ]);
         return redirect()->back()->with("message","I generated all users");
 
@@ -37,14 +45,34 @@ class offerController extends Controller
     }
     public function show(){
 
-        $offers = Offer::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','price','details_' .LaravelLocalization::getCurrentLocale().' as details '  )->get();
+        $offers = Offer::select('id','name_'.LaravelLocalization::getCurrentLocale().' as name','price',
+        'details_' .LaravelLocalization::getCurrentLocale().' as details'  )->get();
         return view("offers.show",compact('offers'));
 
     }
-
+    public function edit($id){
+        $data = Offer::where('id',"=",$id)->get();
+        return view("offers.edit",compact('data'));
+    }
     public function create(){
         return view("offers.create");
     }
+    public function update(OfferRequest $request,$id){
+        $check = Offer::find($id);
+
+        if(!$check){
+            redirect()->back();
+        }
+        Offer::whereId($id)->update([
+            'name_en' => $request->name_en,
+            'name_ar' => $request->name_ar,
+            'price' => $request->price,
+            'details_en' => $request->details_en,
+            'details_ar' => $request->details_ar,
+        ]);
+        return view("offers.show")->with("message","Edit Successfully");
+    }
+
 
 
 }

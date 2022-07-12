@@ -25,9 +25,11 @@ Route::get("/callback/{service}",[Controllers\SocialController::class,"callback"
 
 Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]],function(){
 
-        Route::group(['prefix' => 'offer'],function(){
+        Route::group(['prefix' => 'offers'],function(){
             Route::get("create",[offerController::class,"create"]);
-            Route::get("show",[offerController::class,"show"]);
+            Route::get("show",[offerController::class,"show"])->name('offers.show');
+            Route::get("edit/{id}",[offerController::class,'edit'])->name('offers.edit');
+            Route::post("update/{id}",[offerController::class,'update'])->name("offers.update");
         });
 
 

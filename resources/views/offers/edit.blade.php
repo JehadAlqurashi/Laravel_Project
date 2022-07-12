@@ -16,47 +16,43 @@
           <a class="nav-link" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">{{ $properties['native'] }} <span class="sr-only">(current)</span></a>
         </li>
         @endforeach
+        <li class="nav-item active">
+            <a class="nav-link" rel="alternate" hreflang="" href="{{route("offers.show")}}" <span class="sr-only">{{__("check.backtoshow")}}</span></a>
+          </li>
 
       </ul>
 
     </div>
   </nav>
     <body>
-        <form action="{{route("offers.store")}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route("offers.update",$data[0]->id)}}" method="POST">
             @if(session('message'))
             {{ session('message') }}
             @endif
             <div class="form-group">
               <label for="exampleInputEmail1">{{__('check.Name Offers en')}}</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" name="name_en" aria-describedby="emailHelp" placeholder="{{__('check.Name Offers')}}">
+              <input type="text" class="form-control" id="exampleInputEmail1" name="name_en" value="{{$data[0]->name_en}}" aria-describedby="emailHelp" placeholder="{{__('check.Name Offers')}}">
               @error("name_en")
               <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
               @enderror
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">{{__('check.Name Offers en')}}</label>
-                <input type="file" class="form-control" id="exampleInputEmail1" name="photo" aria-describedby="emailHelp" placeholder="{{__('check.Name Offers')}}">
-                @error("photo")
-                <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
-                @enderror
-              </div>
-            <div class="form-group">
                 <label for="exampleInputEmail1">{{__('check.Name Offers ar')}}</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="name_ar" aria-describedby="emailHelp" placeholder="{{__('check.Name Offers')}}">
+                <input type="text" class="form-control" id="exampleInputEmail1" name="name_ar" value="{{$data[0]->name_ar}}" aria-describedby="emailHelp" placeholder="{{__('check.Name Offers')}}">
                 @error("name_ar")
                 <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
                 @enderror
               </div>
             <div class="form-group">
               <label for="exampleInputPassword1">{{__('check.price')}}</label>
-              <input type="text" class="form-control" name="price" id="exampleInputPassword1" placeholder="Price of offer">
+              <input type="text" class="form-control" name="price" id="exampleInputPassword1" value="{{$data[0]->price}}" placeholder="Price of offer">
               @error("price")
               <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
               @enderror
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">{{__('check.details en')}}</label>
-                <input type="text" class="form-control" name="details_en" id="exampleInputPassword1" placeholder="Details of offer">
+                <input type="text" class="form-control" name="details_en" id="exampleInputPassword1" value="{{$data[0]->details_en}}" placeholder="Details of offer">
                 @error("details_en")
                 <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
                 @enderror
@@ -64,7 +60,7 @@
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">{{__('check.details ar')}}</label>
-                <input type="text" class="form-control" name="details_ar" id="exampleInputPassword1" placeholder="Details of offer">
+                <input type="text" class="form-control" name="details_ar" id="exampleInputPassword1" value="{{$data[0]->details_ar}}" placeholder="Details of offer">
                 @error("details_ar")
                 <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
                 @enderror

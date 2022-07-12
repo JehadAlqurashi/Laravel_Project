@@ -14,8 +14,8 @@ class Offer extends Model
         'price',
         'details_en',
         'details_ar',
+        'photo',
         'created_at',
-
     ];
     protected $hidden  = ['created_at'];
     public $timestamps =false;

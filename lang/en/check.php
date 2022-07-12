@@ -16,10 +16,14 @@ return [
     'name required' => 'name is required',
     'price required' => 'price is required',
     'details required' => 'details is required',
-    'Name Offers' => 'Name Offers',
+    'Name Offers en' => 'Name Offer',
+    'Name Offers ar' => 'Name Offer in Arabic',
     'price' => 'price',
-    'details' => ' details',
-    'submit' => 'submit'
+    'details en' => 'Discription Details in English',
+    'details ar' => 'Discription Details in Arabic',
+    'backtoshow'=>'Back to Show',
+    'submit' => 'submit',
+    'edit' => 'edit'
 
 
 ];

@@ -32,13 +32,14 @@
               </tr>
             </thead>
             <tbody>
-
+                    {{$offers}}
                     @foreach($offers as $offer)
                     <tr>
                     <td>{{$offer->id}}</td>
                     <td>{{$offer->name}}</td>
                     <td>{{$offer->price}}</td>
                     <td>{{$offer->details}}</td>
+                    <td><a href="{{route("offers.edit",$offer->id)}}"><button class="btn-success">{{__("check.edit")}}</button></a></td>
                     </tr>
                     @endforeach
 
