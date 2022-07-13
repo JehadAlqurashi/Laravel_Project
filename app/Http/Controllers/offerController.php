@@ -25,6 +25,20 @@ class offerController extends Controller
         return view("offers.edit")->with("data",$data);
 
     }
+    public function update(OfferRequest $request,$id){
+        $photo =$this->upload($request->photo,'images/offers');
+        Offer::whereId($id)->update([
+            'name_en' => $request->name_en,
+            'name_ar' => $request->name_ar,
+            'price' => $request->price,
+            'details_ar' => $request->details_ar,
+            'details_en' => $request->details_en,
+            'photo' => $photo
+        ]);
+        $data = $this->redirectShow();
+        return $data;
+
+    }
     public function delete($id){
         $delete = Offer::find($id);
         if(!$delete){
@@ -35,10 +49,17 @@ class offerController extends Controller
     }
     public function store(OfferRequest $request){
 
-        $this->upload($request->photo,'images/offers');
-        Offer::create($request->all());
-        $data = Offer::select("id","name_".LaravelLocalization::getCurrentLocale().' as name','price','details_'.LaravelLocalization::getCurrentLocale().' as details')->get();
-        return redirect()->route("offers.show")->with("offers",$data);
+        $photo =$this->upload($request->photo,'images/offers');
+        Offer::create([
+            'name_en' => $request->name_en,
+            'name_ar' => $request->name_ar,
+            'price' => $request->price,
+            'details_ar' => $request->details_ar,
+            'details_en' => $request->details_en,
+            'photo' => $photo
+        ]);
 
+        $data = $this->redirectShow();
+        return $data;
     }
 }
