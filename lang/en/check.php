@@ -23,7 +23,9 @@ return [
     'details ar' => 'Discription Details in Arabic',
     'backtoshow'=>'Back to Show',
     'submit' => 'submit',
-    'edit' => 'edit'
+    'edit' => 'edit',
+    'delete' => 'delete',
+    'photo' => 'photo'
 
 
 ];

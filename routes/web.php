@@ -32,8 +32,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
             Route::get("show",[offerController::class,"show"])->name('offers.show');
             Route::get("edit/{id}",[offerController::class,'edit'])->name('offers.edit');
             Route::post("update/{id}",[offerController::class,'update'])->name("offers.update");
+            Route::get("delete/{id}",[offerController::class,'delete'])->name('offers.delete');
         });
-        Route::get("video",[VideoController::class,'view'])->middleware('verified');
+        // Route::get("video",[VideoController::class,'view'])->middleware('verified');
 
 
     Route::post('store',[offerController::class,"store"])->name("offers.store");

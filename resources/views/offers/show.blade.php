@@ -22,6 +22,15 @@
     </div>
   </nav>
     <body>
+        @if(session('error'))
+        {{ session('error') }}
+        @endif
+        @if(session('hello'))
+        {{ session('hello') }}
+        @endif
+        @if(session('success'))
+        {{ session('success') }}
+        @endif
         <table class="table">
             <thead>
               <tr>
@@ -32,7 +41,6 @@
               </tr>
             </thead>
             <tbody>
-                    {{$offers}}
                     @foreach($offers as $offer)
                     <tr>
                     <td>{{$offer->id}}</td>
@@ -40,6 +48,7 @@
                     <td>{{$offer->price}}</td>
                     <td>{{$offer->details}}</td>
                     <td><a href="{{route("offers.edit",$offer->id)}}"><button class="btn-success">{{__("check.edit")}}</button></a></td>
+                    <td><a href="{{route("offers.delete",$offer->id)}}"><button class="btn-danger">{{__('check.delete')}}</button></a></td>
                     </tr>
                     @endforeach
 

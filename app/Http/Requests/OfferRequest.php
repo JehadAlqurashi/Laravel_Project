@@ -27,7 +27,7 @@ class OfferRequest extends FormRequest
             'name_ar' => ['required','string','max:100'],
             'name_en'=> ['required','string','max:100'],
             'price'=> ['required','string','max:5'],
-            'photo'=> ['required','image'],
+            'photo'=> ['required'],
             'details_en'=>['required','string','max:150'],
             'details_ar'=>['required','string','max:150']
         ];
