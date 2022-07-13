@@ -33,11 +33,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
             Route::get("edit/{id}",[offerController::class,'edit'])->name('offers.edit');
             Route::post("update/{id}",[offerController::class,'update'])->name("offers.update");
             Route::get("delete/{id}",[offerController::class,'delete'])->name('offers.delete');
+            Route::post('store',[offerController::class,"store"])->name("offers.store");
         });
         // Route::get("video",[VideoController::class,'view'])->middleware('verified');
 
 
-    Route::post('store',[offerController::class,"store"])->name("offers.store");
+
 });
 Auth::routes(['verify'=>true]);
 
