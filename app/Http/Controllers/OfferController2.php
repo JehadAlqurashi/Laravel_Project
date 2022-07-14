@@ -22,8 +22,9 @@ class OfferController2 extends Controller
             'price' => $request->price,
             'details_ar' => $request->details_ar,
             'details_en' => $request->details_en,
-            'photo' => $request->photo
+            'photo' => $photo
         ]);
+
         if($offer){
            return response()->json([
                 'status'=>true,
@@ -61,4 +62,35 @@ class OfferController2 extends Controller
         }
 
     }
+    public function edit($id){
+        $offer = Offer::whereId($id)->get();
+        return view("ajax.edit")->with("offer",$offer);
+    }
+    public function update(OfferRequest $request){
+        $photo  = $this->upload($request->photo,'images/offers');
+        $offer = Offer::whereId($request->id);
+        $offer->update([
+            'name_en' => $request->name_en,
+            'name_ar' => $request->name_ar,
+            'price' => $request->price,
+            'details_ar' => $request->details_ar,
+            'details_en' => $request->details_en,
+            'photo' => $photo
+        ]);
+        if($offer){
+            return response()->json([
+                'status' => true,
+                'msg' => 'Edit Item Successfully',
+            ]);
+
+
+        }else{
+            return response()->json([
+                'status' => true,
+                'msg' => 'There are Somthing Wrong',
+            ]);
+        }
+
+    }
+
 }

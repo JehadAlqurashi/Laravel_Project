@@ -5,6 +5,7 @@ use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\offerController;
 use App\Http\Controllers\OfferController2;
 use App\Http\Controllers\VideoController;
+use App\Models\Offer;
 use App\Models\Video;
 use Illuminate\Foundation\Console\DownCommand;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
             Route::get("delete/{id}",[offerController::class,'delete'])->name('offers.delete');
             Route::post('store',[offerController::class,"store"])->name("offers.store");
         });
+
         // Route::get("video",[VideoController::class,'view'])->middleware('verified');
 
 
@@ -49,4 +51,6 @@ Route::group(['prefix'=>'ajax'],function(){
     Route::post("store",[OfferController2::class,'store'])->name('ajax.store');
     Route::get("show",[OfferController2::class,'show'])->name("ajax.show");
     Route::post("delete",[OfferController2::class,"delete"])->name("ajax.delete");
+    Route::get("edit/{id}",[OfferController2::class,'edit'])->name("ajax.edit");
+    Route::post("update",[OfferController2::class,"update"])->name("ajax.update");
 });

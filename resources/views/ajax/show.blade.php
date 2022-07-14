@@ -39,7 +39,7 @@
                     <td>{{$offer->name}}</td>
                     <td>{{$offer->price}}</td>
                     <td>{{$offer->details}}</td>
-                    <td><a href="{{route("offers.edit",$offer->id)}}"><button class="btn-success">{{__("check.edit")}}</button></a></td>
+                    <td><a href="{{route("ajax.edit",$offer->id)}}"><button class="btn-success">{{__("check.edit")}}</button></a></td>
                     <td><button offer-id="{{$offer->id}}" name="delete" class="btn-danger">{{__('check.delete')}}</button></td>
                     </tr>
                     @endforeach

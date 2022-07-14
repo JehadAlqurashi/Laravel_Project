@@ -23,40 +23,38 @@
   </nav>
     <body>
         <p id="message"></p>
-        <form id="idForm" action="{{route("ajax.store")}}">
-
-
+        <form id="idForm">
             <div class="form-group">
               <label for="exampleInputEmail1">{{__('check.Name Offers en')}}</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" name="name_en" aria-describedby="emailHelp" placeholder="{{__('check.Name Offers')}}">
+              <input type="text" class="form-control" value="{{$offer[0]->name_en}}" id="exampleInputEmail1" name="name_en" aria-describedby="emailHelp" placeholder="{{__('check.Name Offers')}}">
               @error("name_en")
               <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
               @enderror
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">File</label>
-                <input type="file" class="form-control" id="exampleInputEmail1" name="photo" aria-describedby="emailHelp" placeholder="{{__('check.Name Offers')}}">
+                <input type="file" class="form-control"  id="exampleInputEmail1" name="photo" aria-describedby="emailHelp" placeholder="{{__('check.Name Offers')}}">
                 @error("photo")
                 <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
                 @enderror
               </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">{{__('check.Name Offers ar')}}</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="name_ar" aria-describedby="emailHelp" placeholder="{{__('check.Name Offers')}}">
+                <input type="text" class="form-control" value="{{$offer[0]->name_ar}}"  id="exampleInputEmail1" name="name_ar" aria-describedby="emailHelp" placeholder="{{__('check.Name Offers')}}">
                 @error("name_ar")
                 <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
                 @enderror
               </div>
             <div class="form-group">
               <label for="exampleInputPassword1">{{__('check.price')}}</label>
-              <input type="text" class="form-control" name="price" id="exampleInputPassword1" placeholder="Price of offer">
+              <input type="text" value="{{$offer[0]->price}}" class="form-control" name="price" id="exampleInputPassword1" placeholder="Price of offer">
               @error("price")
               <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
               @enderror
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">{{__('check.details en')}}</label>
-                <input type="text" class="form-control" name="details_en" id="exampleInputPassword1" placeholder="Details of offer">
+                <input type="text" class="form-control" value="{{$offer[0]->details_en}}" name="details_en" id="exampleInputPassword1" placeholder="Details of offer">
                 @error("details_en")
                 <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
                 @enderror
@@ -64,7 +62,9 @@
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">{{__('check.details ar')}}</label>
-                <input type="text" class="form-control" name="details_ar" id="exampleInputPassword1" placeholder="Details of offer">
+                <input type="text" class="form-control" value="{{$offer[0]->details_ar}}" name="details_ar" id="exampleInputPassword1" placeholder="Details of offer">
+                <input type="hidden" class="form-control" value="{{$offer[0]->id}}" name="id">
+
                 @error("details_ar")
                 <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
                 @enderror
@@ -84,7 +84,7 @@ evt.preventDefault();
 var formData = new FormData($(this)[0]);
 
 $.ajax({
-    url: "{{route('ajax.store')}}",
+    url: "{{route('ajax.update')}}",
     type: 'POST',
     data: formData,
     cache: false,
