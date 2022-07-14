@@ -3,6 +3,7 @@ use App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\offerController;
+use App\Http\Controllers\OfferController2;
 use App\Http\Controllers\VideoController;
 use App\Models\Video;
 use Illuminate\Foundation\Console\DownCommand;
@@ -43,3 +44,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
 Auth::routes(['verify'=>true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware("verified");
+Route::group(['prefix'=>'ajax'],function(){
+    Route::get("create",[OfferController2::class,'create']);
+    Route::post("store",[OfferController2::class,'store'])->name('ajax.store');
+    Route::get("show",[OfferController2::class,'show'])->name("ajax.show");
+    Route::post("delete",[OfferController2::class,"delete"])->name("ajax.delete");
+});
