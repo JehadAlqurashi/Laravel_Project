@@ -54,3 +54,4 @@ Route::group(['prefix'=>'ajax'],function(){
     Route::get("edit/{id}",[OfferController2::class,'edit'])->name("ajax.edit");
     Route::post("update",[OfferController2::class,"update"])->name("ajax.update");
 });
+Route::get("adult",[Controllers\Auth\CustomAuth::class,"adult"]);
