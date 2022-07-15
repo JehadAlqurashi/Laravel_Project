@@ -54,4 +54,10 @@ Route::group(['prefix'=>'ajax'],function(){
     Route::get("edit/{id}",[OfferController2::class,'edit'])->name("ajax.edit");
     Route::post("update",[OfferController2::class,"update"])->name("ajax.update");
 });
-Route::get("adult",[Controllers\Auth\CustomAuth::class,"adult"]);
+Route::group(['middleware'=>'verified'],function(){
+    Route::get("adult",[Controllers\Auth\CustomAuth::class,"adult"])->middleware("CheckAge");
+    Route::get("dashboard",function(){
+        return "You Are Not Allowed";
+    })->name("not.adult");
+});
+

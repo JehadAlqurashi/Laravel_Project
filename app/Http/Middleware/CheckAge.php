@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use PDO;
 
 class CheckAge
 {
@@ -16,6 +18,12 @@ class CheckAge
      */
     public function handle(Request $request, Closure $next)
     {
+        $ageDatabase = Auth::user()->age;
+        if($ageDatabase <15){
+            return redirect()->route("not.adult");
+        }
+
+
         return $next($request);
     }
 }
