@@ -22,8 +22,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'mobile',
-        'age',
-        'expire',
     ];
 
     /**
@@ -44,4 +42,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function phone(){
+       return $this->hasOne("App\Models\Phone",'user_id');
+}
+
 }

@@ -10,6 +10,7 @@ use App\Models\Video;
 use Illuminate\Foundation\Console\DownCommand;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,10 +55,20 @@ Route::group(['prefix'=>'ajax'],function(){
     Route::get("edit/{id}",[OfferController2::class,'edit'])->name("ajax.edit");
     Route::post("update",[OfferController2::class,"update"])->name("ajax.update");
 });
-Route::group(['middleware'=>'verified'],function(){
+Route::group(['middleware'=>'auth:web'],function(){
     Route::get("adult",[Controllers\Auth\CustomAuth::class,"adult"])->middleware("CheckAge");
     Route::get("dashboard",function(){
         return "You Are Not Allowed";
     })->name("not.adult");
 });
+Route::group(['prefix'=>"admin"],function(){
+    Route::get("login",[Controllers\AdminController::class,"panel"]);
+    Route::get("dashboard",[Controllers\AdminController::class,"dashboard"])->middleware("auth:admin")->name("admin.dashboard");
+    Route::post("query",[Controllers\AdminController::class,"login"])->name("admin.login");
+});
+
+
+#################### Relations One To One ######################
+Route::get("one",[Controllers\RelationsController::class,"oneToone"]);
+
 

@@ -26,10 +26,14 @@ class IncreaseCount
      */
     public function handle(VideoView $event)
     {
-        $this->update($event->video);
+        if(session()->has("view")){
+            $this->update($event->video);
+
+        }
     }
     public function update($video){
         $video->view += 1;
         $video->save();
+        session();
     }
 }

@@ -19,7 +19,8 @@ class CheckAge
     public function handle(Request $request, Closure $next)
     {
         $ageDatabase = Auth::user()->age;
-        if($ageDatabase <15){
+
+        if($ageDatabase>10){
             return redirect()->route("not.adult");
         }
 
